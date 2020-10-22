@@ -20,7 +20,7 @@ class SplitTestCase(unittest.TestCase):
             {
                 KEY_INPUT: "Childish Gambino",
                 KEY_EXPECTED: {
-                    KEY_LENGTH: 3,
+                    KEY_LENGTH: 2,
                     KEY_FIRST_WORD: "Childish",
                     KEY_SECOND_WORD: "Gambino",
                 }
@@ -30,10 +30,19 @@ class SplitTestCase(unittest.TestCase):
                 KEY_EXPECTED: {
                     KEY_LENGTH: 4,
                     KEY_FIRST_WORD: "Bone",
-                    KEY_SECOND_WORD: "Thigs",
+                    KEY_SECOND_WORD: "Thugs",
                 }
-            }
+            },
             # TODO add another
+            {
+                KEY_INPUT: "horses back",
+                KEY_EXPECTED:{
+                    KEY_LENGTH: 2,
+                    KEY_FIRST_WORD: "horses",
+                    KEY_SECOND_WORD:  "back"
+                }
+                
+            }
         ]
         
         self.failure_test_params = [
@@ -47,11 +56,17 @@ class SplitTestCase(unittest.TestCase):
             {
                 KEY_INPUT: "Tupac Shakur",
                 KEY_EXPECTED: {
+                    KEY_LENGTH: 200,
+                    KEY_FIRST_WORD: "Shakira",
+                }
+            },
+            {
+                KEY_INPUT: "houses",
+                KEY_EXPECTED: {
                     KEY_LENGTH: 2,
-                    KEY_FIRST_WORD: "Tupac",
+                    KEY_FIRST_WORD: " "
                 }
             }
-            # TODO add another
         ]
 
 
@@ -63,7 +78,7 @@ class SplitTestCase(unittest.TestCase):
             self.assertEqual(len(inp), expected[KEY_LENGTH])
             self.assertEqual(inp[0], expected[KEY_FIRST_WORD])
             self.assertEqual(inp[1], expected[KEY_SECOND_WORD])
-            
+                 
     def test_split_failure(self):
         for test in self.failure_test_params:
             inp = test[KEY_INPUT].split()
@@ -71,7 +86,7 @@ class SplitTestCase(unittest.TestCase):
             
             self.assertNotEqual(len(inp), expected[KEY_LENGTH])
             self.assertNotEqual(inp[0], expected[KEY_FIRST_WORD])
-
+  
 
 if __name__ == '__main__':
     unittest.main()
